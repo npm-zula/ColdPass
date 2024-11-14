@@ -1,0 +1,39 @@
+// React Native Expo .cursorrules
+
+// React Native Expo best practices
+const reactNativeExpoBestPractices = [
+  "Use functional components with hooks",
+  "Utilize Expo SDK features and APIs",
+  "Implement proper navigation using React Navigation",
+  "Use Expo's asset system for images and fonts",
+  "Implement proper error handling and crash reporting",
+  "Utilize Expo's push notification system",
+];
+
+// Folder structure
+const folderStructure = `
+app/              // expo-router pages
+components/       // reusable components
+assets/          // static assets
+`;
+
+// Additional instructions
+const additionalInstructions = `
+1. Use TypeScript for type safety
+2. Implement proper styling using StyleSheet
+3. Utilize Expo's vector icons
+4. Use Expo's secure store for sensitive data
+5. Implement proper offline support
+6. Follow React Native best practices for performance
+7. Use Expo's OTA updates for quick deployments
+8. Use functional components with TypeScript
+9. Implement proper prop typing
+10. Use expo-router for navigation
+11. Follow proper component structure
+12. Implement proper error handling
+13. Use StyleSheet for styling
+14. Follow proper naming conventions
+15. Use proper type imports
+16. Implement proper loading states
+17. Use proper error boundaries
+`;

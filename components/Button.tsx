@@ -1,41 +1,73 @@
-import { forwardRef } from 'react';
-import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { globalStyles } from '../styles/globalStyles';
 
-type ButtonProps = {
-  title?: string;
-} & TouchableOpacityProps;
+interface ButtonProps {
+  label: string;
+  onPress: () => void;
+  variant?: 'primary' | 'secondary';
+  size?: 'large' | 'medium';
+  disabled?: boolean;
+}
 
-export const Button = forwardRef<TouchableOpacity, ButtonProps>(
-  ({ title, ...touchableProps }, ref) => {
-    return (
-      <TouchableOpacity ref={ref} {...touchableProps} style={[styles.button, touchableProps.style]}>
-        <Text style={styles.buttonText}>{title}</Text>
-      </TouchableOpacity>
-    );
-  }
-);
+export const Button = ({ 
+  label, 
+  onPress, 
+  variant = 'primary',
+  size = 'large',
+  disabled = false 
+}: ButtonProps) => {
+  return (
+    <TouchableOpacity
+      style={[
+        styles.button,
+        styles[variant],
+        styles[size],
+        disabled && styles.disabled
+      ]}
+      onPress={onPress}
+      disabled={disabled}
+    >
+      <Text style={[
+        styles.text,
+        variant === 'secondary' && styles.secondaryText
+      ]}>
+        {label}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   button: {
+    borderRadius: globalStyles.borderRadius.md,
     alignItems: 'center',
-    backgroundColor: '#6366F1',
-    borderRadius: 24,
-    elevation: 5,
-    flexDirection: 'row',
     justifyContent: 'center',
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      height: 2,
-      width: 0,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
+  primary: {
+    backgroundColor: globalStyles.colors.primary,
+  },
+  secondary: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+      borderColor: globalStyles.colors.primary,
+  },
+  large: {
+    paddingVertical: globalStyles.spacing.md,
+    paddingHorizontal: globalStyles.spacing.xl,
+  },
+  medium: {
+    paddingVertical: globalStyles.spacing.sm,
+    paddingHorizontal: globalStyles.spacing.lg,
+  },
+  disabled: {
+    opacity: 0.5,
+  },
+  text: {
+    color: globalStyles.colors.background,
+    fontSize: globalStyles.typography.sizes.body,
+    fontFamily: globalStyles.typography.fontFamily.medium,
+  },
+  secondaryText: {
+    color: globalStyles.colors.primary,
   },
 });
